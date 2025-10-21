@@ -6,21 +6,19 @@
   <title>TikTok Coins</title>
   <style>
     :root {
-      --tiktok-aqua: #25f4ee; 
-      --tiktok-pink: #fe2c55; 
-      --background-dark: #121212; 
-      --text-light: #F0F0F0;
-      --gold-coin: #FFC000; 
-      --card-bg: #1F1F1F; 
-      --border-accent: #3A3A3A;
+      --tiktok-aqua: #25f4ee;
+      --tiktok-pink: #fe2c55;
+      --background-dark: #0e0e0e;
+      --text-light: #f5f5f5;
+      --gold: #ffc000;
+      --card-bg: #1c1c1c;
+      --border-accent: #333;
     }
 
     html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden; /* remove barra de rolagem */
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
       font-family: 'Poppins', sans-serif;
       background-color: var(--background-dark);
       color: var(--text-light);
@@ -29,25 +27,34 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center; /* centraliza vertical */
-      align-items: center;     /* centraliza horizontal */
+      justify-content: center;
+      align-items: center;
       text-align: center;
       position: relative;
     }
 
+    /* CONFETTI */
     .confetti {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      overflow: hidden; z-index: 0; pointer-events: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .confetti span {
-      position: absolute; width: 8px; height: 8px;
-      background: var(--tiktok-aqua); border-radius: 50%;
-      animation: fall 6s linear infinite; opacity: 0.7;
+      position: absolute;
+      width: 8px; height: 8px;
+      background: var(--tiktok-aqua);
+      border-radius: 50%;
+      animation: fall 6s linear infinite;
+      opacity: 0.7;
     }
 
     .confetti span:nth-child(odd) {
-      background: var(--tiktok-pink); width: 6px; height: 6px;
+      background: var(--tiktok-pink);
+      width: 6px; height: 6px;
     }
 
     @keyframes fall {
@@ -60,20 +67,19 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100%; /* ocupa toda a tela */
+      height: 100%;
       width: 100%;
       padding: 20px;
       box-sizing: border-box;
-      overflow-y: auto; /* caso o conteúdo ultrapasse, ainda é scroll interno */
+      overflow-y: auto;
+      z-index: 2;
     }
 
     .logo {
-      width: 120px;
-      height: 120px;
+      width: 120px; height: 120px;
       background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/TikTok_logo.svg/1024px-TikTok_logo.svg.png') no-repeat center/contain;
-      filter: drop-shadow(0 0 10px rgba(37,244,238,0.7)) drop-shadow(0 0 10px rgba(254,44,85,0.7)); 
+      filter: drop-shadow(0 0 10px rgba(37,244,238,0.7)) drop-shadow(0 0 10px rgba(254,44,85,0.7));
       margin-bottom: 15px;
-      z-index: 2;
     }
 
     h1 {
@@ -87,46 +93,64 @@
     }
 
     .rewards {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 15px; width: 100%; max-width: 360px; z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+      max-width: 360px;
+      z-index: 2;
     }
 
     a.reward {
-      width: 100%; background: var(--card-bg);
-      border: 2px solid var(--border-accent); border-radius: 15px;
-      padding: 12px 16px; font-size: 1.1rem; font-weight: 600;
-      color: var(--text-light); transition: all 0.3s;
-      position: relative; text-decoration: none;
-      display: block; text-align: center;
-      line-height: 1.4; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      background: var(--card-bg);
+      border: 2px solid var(--border-accent);
+      border-radius: 15px;
+      padding: 12px 16px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-light);
+      transition: all 0.3s;
+      position: relative;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      line-height: 1.4;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     }
 
     .reward-main-line {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  font-size: 1.3rem;
-  font-weight: 700;
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
 
     .galaxy-emoji {
       font-size: 1.2rem;
       vertical-align: middle;
       margin: 0 5px;
-      text-shadow: 0 0 8px var(--gold-coin);
+      text-shadow: 0 0 8px var(--gold);
       transition: transform 0.3s;
     }
 
     .reward:hover .galaxy-emoji { transform: scale(1.1); }
 
-    .price { font-size: 1rem; color: #bbb; margin-top: 5px; }
+    .price {
+      font-size: 1rem;
+      color: #bbb;
+      margin-top: 5px;
+    }
+
     .price s { color: #666; margin-right: 6px; }
 
     .discount {
       display: block;
       font-size: 1rem;
-      color: var(--gold-coin);
+      color: var(--gold);
       margin-top: 5px;
       font-weight: 700;
       text-shadow: 0 0 5px rgba(255, 192, 0, 0.5);
@@ -145,24 +169,30 @@
     }
 
     .badge {
-  position: absolute;
-  top: -10px;
-  right: -8px;
-  background-color: #fe2c55;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
+      position: absolute;
+      top: -10px;
+      right: -8px;
+      background-color: #fe2c55;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      animation: pulse 1.5s infinite;
+    }
 
     @keyframes pulse {
       0%, 100% { transform: scale(1); box-shadow: 0 0 12px rgba(254,44,85,0.9); }
       50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(37,244,238,0.9); }
     }
 
-    footer { font-size: 0.8rem; color: #555; margin-top: 15px; z-index: 2; }
+    footer {
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 15px;
+      z-index: 2;
+    }
 
     @media (max-width: 480px) {
       h1 { font-size: 1.8rem; }
@@ -171,6 +201,80 @@
       .discount { font-size: 0.9rem; }
     }
 
+    /* POPUP */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popup {
+      background: var(--card-bg);
+      padding: 25px 20px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 300px;
+      border: 2px solid var(--tiktok-pink);
+      box-shadow: 0 0 20px rgba(254,44,85,0.6);
+      animation: pop-in 0.4s ease;
+      position: relative;
+    }
+
+    @keyframes pop-in {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .popup h2 {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 8px var(--gold);
+    }
+
+    .popup p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: var(--text-light);
+    }
+
+    .popup button {
+      background: var(--tiktok-pink);
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 10px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .popup button:hover {
+      background: var(--tiktok-aqua);
+      color: #000;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -185,44 +289,79 @@
 
     <div class="rewards">
       <a class="reward" href="https://go.ironpayapp.com.br/oibjz0dmmh">
-        <span class="reward-main-line">2 <span class="galaxy-emoji">🌌</span> Galáxias</span>
-        <span class="price">de <s>R$202,00</s> por <strong>R$97,00</strong></span>
+        <span class="reward-main-line">1 🌌 Galáxia</span>
+        <span class="price">de <s>R$101,00</s> por <strong>R$56,50</strong></span>
       </a>
 
       <a class="reward" href="https://go.ironpayapp.com.br/cixhq">
-        <span class="reward-main-line">4 <span class="galaxy-emoji">🌌</span> Galáxias</span>
-        <span class="price">de <s>R$404,00</s> por <strong>R$194,00</strong></span>
+        <span class="reward-main-line">2 🌌 Galáxias</span>
+        <span class="price">de <s>R$202,00</s> por <strong>R$113,00</strong></span>
       </a>
 
       <a class="reward" href="https://go.ironpayapp.com.br/5lwiu">
-        <span class="badge">MAIS VENDIDA</span>
-        <span class="reward-main-line">6 <span class="galaxy-emoji">🌌</span> Galáxias</span>
-        <span class="price">de <s>R$606,00</s> por <strong>R$291,00</strong></span>
+        <span class="reward-main-line">3 🌌 Galáxias</span>
+        <span class="price">de <s>R$303,00</s> por <strong>R$169,50</strong></span>
       </a>
 
       <a class="reward" href="https://go.ironpayapp.com.br/9lx0m">
-        <span class="reward-main-line">8 <span class="galaxy-emoji">🌌</span> Galáxias</span>
-        <span class="price">de <s>R$808,00</s> por <strong>R$388,00</strong></span>
+        <span class="badge">MAIS VENDIDA</span>
+        <span class="reward-main-line">5 🌌 Galáxias</span>
+        <span class="price">de <s>R$505,00</s> por <strong>R$282,50</strong></span>
+        <span class="discount">237 VENDIDOS HOJE</span>
       </a>
 
       <a class="reward" href="https://go.ironpayapp.com.br/nhshj">
-        <span class="reward-main-line">10 <span class="galaxy-emoji">🌌</span> Galáxias</span>
-        <span class="price">de <s>R$1.010,00</s> por <strong>R$485,00</strong></span>
+        <span class="reward-main-line">10 🌌 Galáxias</span>
+        <span class="price">de <s>R$1.010,00</s> por <strong>R$565,00</strong></span>
       </a>
 
       <a class="reward" href="https://go.ironpayapp.com.br/eeamc">
-        <span class="reward-main-line">25 <span class="galaxy-emoji">🌌</span> Galáxias</span>
-        <span class="price">de <s>R$2.525,00</s> por <strong>R$946,87</strong></span>
-        <span class="discount">-50% DE DESCONTO</span>
+        <span class="reward-main-line">20 🌌 Galáxias</span>
+        <span class="price">de <s>R$2.020,00</s> por <strong>R$1.130,00</strong></span>
+        <span class="discount">ÚLTIMO DISPONÍVEL</span>
       </a>
     </div>
 
     <footer>© 2025 TIKTOK COINS | TODOS OS DIREITOS RESERVADOS</footer>
   </div>
 
-  <!-- BLOQUEIO DO BOTÃO DIREITO -->
+ <!-- POPUP -->
+<div class="popup-overlay" id="popup">
+  <div class="popup">
+    <span class="close-btn" onclick="closePopup()">✖</span>
+    <h2>🎉 Parabéns! 🎉</h2>
+    <p>Você acaba de ganhar <strong class="discount-pulse">50% de desconto</strong><br>na compra de galáxias para presentear seu tiktoker!</p>
+    <button onclick="closePopup()">Comprar agora</button>
+  </div>
+</div>
+
+<style>
+  .discount-pulse {
+    color: #ffffff; /* dourado chamativo */
+    animation: pulseDiscount 1.5s infinite alternate;
+    text-shadow: 0 0 5px #FFC000, 0 0 10px #FFD700, 0 0 15px #FFEA00;
+  }
+
+  @keyframes pulseDiscount {
+    from { transform: scale(1); text-shadow: 0 0 5px #FFC000, 0 0 10px #FFD700, 0 0 15px #FFEA00; }
+    to { transform: scale(1.2); text-shadow: 0 0 10px #FFC000, 0 0 20px #FFD700, 0 0 30px #FFEA00; }
+  }
+</style>
+
+<script>
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+</script>
+
   <script>
-    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('popup').classList.add('active'), 800);
+    });
+    function closePopup() {
+      document.getElementById('popup').classList.remove('active');
+    }
   </script>
 </body>
 </html>
